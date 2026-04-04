@@ -14,7 +14,7 @@ from PIL import Image
 # import your existing logic
 from src.utils import *
 from src.nlp_utils import *
-
+import re
 import pytesseract
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
@@ -85,11 +85,17 @@ def analyze_document(request: DocumentRequest, x_api_key: str = Header(...)):
     persons = extract_persons(doc, is_valid_person)
     cleaned_persons = []
 
+    
+
+    cleaned_persons = []
+
     for p in persons:
         p = re.sub(r"\b(Company|Ltd|Inc|Corporation|Bank|Software)\b", "", p).strip()
-    cleaned_persons.append(p)
+        cleaned_persons.append(p)
 
     persons = list(set(cleaned_persons))
+
+
     dates = extract_dates(text)
     orgs = extract_orgs(text)
     money = extract_money(text)

@@ -1,10 +1,14 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(__file__))
 import streamlit as st
 from PyPDF2 import PdfReader
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
+from nlp_utils import *
 from utils import *
-from src.nlp_utils import *
 import nltk
 
 @st.cache_resource

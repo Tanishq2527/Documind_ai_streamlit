@@ -1,17 +1,18 @@
 import re
 
 def clean_text(text):
+    import re
 
-    # normalize spacing
-    text = text.replace("\n", " ")
+    # Replace line breaks with sentence separator
+    text = text.replace("\n", ". ")
 
-    # add space after colon
+    # Add space after colon
     text = re.sub(r":", ": ", text)
 
-    # remove extra spaces
+    # Remove extra spaces
     text = re.sub(r"\s+", " ", text)
 
-    # remove weird characters
+    # Remove weird characters
     text = re.sub(r"[^a-zA-Z0-9.,₹$/:\- ]", "", text)
 
     return text.strip()
