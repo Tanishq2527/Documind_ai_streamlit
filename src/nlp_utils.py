@@ -7,14 +7,16 @@ spacy.cli.download("en_core_web_sm")
 
 def load_nlp():
     return spacy.load("en_core_web_sm")
+
+
 import spacy
 
 def load_nlp():
     try:
         return spacy.load("en_core_web_sm")
-    except:
-        import os
-        os.system("python -m spacy download en_core_web_sm")
+    except OSError:
+        import subprocess
+        subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
         return spacy.load("en_core_web_sm")
 
 def extract_persons(doc, is_valid_person):
