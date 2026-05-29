@@ -11,11 +11,18 @@ from docx import Document
 import pytesseract
 from PIL import Image
 
+
 # import your existing logic
 from src.utils import *
 from src.nlp_utils import *
 import re
 import pytesseract
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
@@ -27,10 +34,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# 🔐 API KEY
-API_KEY = "sk_track2_987654321"
-
 
 # 📥 Request Model
 class DocumentRequest(BaseModel):
